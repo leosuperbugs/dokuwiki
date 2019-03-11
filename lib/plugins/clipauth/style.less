@@ -1,0 +1,576 @@
+@clipunit :1rem;
+@errormsg :#fcc;
+@clipgray :__paperclip__edititem__;
+@clipblack :__paperclip__darkgrey__;
+@borderline :__paperclip__textarea__;
+@clipwhite :__background__;
+@blineheight :0.0883rem;
+@titlefont :3rem;
+@barspacing :2.292rem;
+@top_bottom_distance :6.667rem;
+@inputwidth: 30vw;
+
+
+.paperclip__selfinfo {
+  padding: 6 * @clipunit 8vw 0;
+  min-height: 90vh;
+  margin: 0 -8vw 0;
+}
+.paperclip__selfinfo__header {
+  margin-bottom: 2.5 * @clipunit;
+  display: inline-block;
+  border-bottom: 2px solid __paperclip__gold__;
+}
+
+.paperclip__selfinfo__navbar {
+  display: inline-block;
+  margin-right: 1.5 * @clipunit;
+  cursor: pointer;
+}
+
+.paperclip__selfinfo__navbar a:link,
+.paperclip__selfinfo__navbar a:visited
+{
+  color: __paperclip__stdbg__ !important;
+}
+
+.paperclip__selfinfo__selectednav {
+  border-bottom: 4px solid __paperclip__gold__;
+  font-size: 1.25rem;
+}
+
+.paperclip__editlog__unit,
+.paperclip__reply__unit{
+  margin-bottom: @clipunit;
+}
+
+.paperclip__editlog__split {
+  color: __paperclip__textarea__;
+}
+
+.paperclip__editlog__pageid ,
+.paperclip__settings__title{
+  display: inline-block;
+  font-size: 1.25rem;
+  margin-right: 2 * @clipunit;
+}
+
+.paperclip__editlog__time {
+  display: inline-block;
+  font-size: 0.8rem;
+  color: __paperclip__edititem__;
+}
+
+.paperclip__editlog__sum,
+.paperclip__settings__info{
+  padding: @clipunit 0 @clipunit @clipunit;
+  margin-bottom: 0;
+  font-size: 0.9rem;
+  color: __paperclip__edititem__;
+}
+
+.paperclip__editlog__footer {
+  font-size: 0.9rem;
+}
+
+.paperclip__link,
+.paperclip__editlog__footer a,
+.paperclip__reply__footer a,
+.paperclip__reply__footer span,
+.paperclip__settings__update{
+  color: __paperclip__gold__ !important;
+  text-decoration: underline;
+}
+
+.paperclip__reply__footer a,
+.paperclip__editlog__footer a {
+  margin-right: @clipunit;
+}
+
+.paperclip__editlog__index {
+  float: right;
+}
+
+.paperclip__pagenav {
+  float: right;
+}
+
+.paperclip__pagenav table{
+  border:none;
+}
+
+.paperclip__pagenum{
+  border: none;
+  color: __paperclip__gold__ !important;
+}
+
+.paperclip__pagehref {
+  color: __paperclip__gold__ !important;
+  vertical-align: middle;
+  font-size: 0.84rem;
+  text-decoration:underline !important;
+}
+
+.paperclip__pagenum__nohref {
+  vertical-align: middle;
+  font-size: 0.84rem;
+  border: none;
+}
+
+.paperclip__pagejump {
+  border: none;
+}
+
+.paperclip__pagejump__input{
+  border: 2px solid __paperclip__stdbg__;
+  width: @clipunit;
+  height: @clipunit;
+}
+
+.paperclip__pagejump__button {
+  border: none;
+  font-size: 0.84rem;
+  background-color: transparent;
+  color: __paperclip__gold__;
+  text-decoration: underline;
+  margin-left: 0.5 * @clipunit;
+}
+
+.paperclip__reply__from {
+  display: inline-block;
+  font-size: 1rem;
+  margin-right: 2 * @clipunit;
+}
+
+@srchMargin: 5rem;
+@tinytext: 0.8rem;
+@lineMargin: 0.5rem;
+@btnSize: 2.5rem;
+@bgSize: 1.5rem;
+
+// for paperclip's search result
+.paperclip__search {
+  margin-top: @srchMargin;
+  .paperclip__srchrslt {
+    margin-bottom: @srchMargin;
+    font-size: @titlefont;
+    font-weight: bolder;
+    color: __paperclip__stdbg__;
+    display: inline-block;
+  }
+
+  .paperclip__floatright {
+
+    fieldset.search-form {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      text-align: left;
+      padding: 0;
+
+      border: none;
+      width: 40vw !important;
+      margin: 0 !important;
+
+      input {
+        width: 80% !important;
+        margin: @lineMargin 0;
+        padding: @lineMargin 1rem;
+        border: none;
+        border-bottom: 3px solid __paperclip__stdbg__;
+      }
+
+      button[type=submit] {
+        height: @btnSize;
+        width: @btnSize;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-color: transparent;
+        background-image: url("/lib/tpl/starter/images/home/search-new.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        border: none;
+
+      }
+    }
+
+    .paperclip__srchhint {
+      font-size: @tinytext;
+      font-weight: bold;
+      color: __paperclip__comment__;
+    }
+    float: right;
+  }
+
+  .paperclip__qresult {
+    width: 70vw;
+    .paperclip__counter {
+      margin-bottom: 0;
+      font-size: @tinytext;
+      font-weight: bold;
+      color: __paperclip__textarea__;
+    }
+  }
+
+  .paperclip__qtitle {
+    a {
+      color: __paperclip__gold__;
+      font-size: 1.25rem;
+      margin-bottom: @lineMargin;
+    }
+    .paperclip__searchmeta {
+      margin: @lineMargin 0;
+      font-size: @tinytext;
+      color: __paperclip__stdbg__;
+
+      .paperclip__lastmod {
+        margin-right: 1rem;
+      }
+    }
+    p strong.search_hit {
+      background-color: __paperclip__gold__;
+    }
+  }
+
+  .paperclip__pagenav {
+    float: left;
+  }
+
+}
+
+@clipAdminUnit : 0.5 * @clipunit;
+
+.paperclip__admin {
+  margin-top: @srchMargin;
+
+  .paperclip__adminProcess {
+    margin-bottom: @clipunit;
+    span {
+      margin-right: 2 * @clipunit;
+    }
+
+    select {
+      margin-left: 4 * @clipunit;
+    }
+
+    // Care about space here
+    input[type=submit] {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      border: none;
+      text-decoration: underline;
+      color: __paperclip__gold__;
+      margin-right: @clipunit;
+      background-color: transparent;
+    }
+  }
+  .paperclip__editorInfo {
+    span {
+      margin-right: 2 * @clipunit;
+    }
+    margin-bottom: @clipAdminUnit;
+  }
+  .paperclip__userState {
+    margin-bottom: @clipAdminUnit;
+  }
+  .paperclip__editlog__unit {
+    .paperclip__editlog__header {
+      margin-bottom: @clipAdminUnit;
+      .paperclip__editlog__pageid {
+        font-size: @clipunit;
+        font-weight: bold;
+      }
+      .paperclip__editlog__time {
+        display: none;
+      }
+    }
+    .paperclip__editlog__sum {
+      margin-bottom: 0;
+      padding: @clipAdminUnit 0;
+    }
+  }
+}
+
+@extlink_mginlft: 2rem;
+@extlink_pdin: 0.5rem;
+
+.paperclip__login{
+
+  .paperclip__extlogin {
+    margin-top: 2rem;
+    text-align: center;
+
+    .paperclip__extlgintitle {
+      display: inline-block;
+      font-weight: lighter;
+    }
+
+    .paperclip__divhr {
+      display: inline-block;
+      width: @inputwidth;
+      border-bottom: 1px solid white;
+    }
+
+    .paperclip__extlkgrp {
+      margin-top: 1rem;
+
+      .paperclip__extlink {
+        padding: @extlink_pdin @extlink_pdin @extlink_pdin @extlink_mginlft;
+        border-radius: 10px;
+        font-size: 1.2rem;
+      }
+    }
+
+    #extlink__wechat {
+      background: __paperclip__darkgrey__ url("/lib/plugins/clipauth/img/wechat_bw.png") no-repeat left center;
+      background-size: @extlink_mginlft @extlink_mginlft;
+    }
+    #extlink__weibo {
+      background: __paperclip__darkgrey__ url("/lib/plugins/clipauth/img/weibo_bw.png") no-repeat left center;
+      background-size: @extlink_mginlft @extlink_mginlft;
+    }
+  }
+}
+
+
+.dokuwiki .search-results-form fieldset.search-form button.toggleAssistant {
+  display: none;
+}
+.noshow {
+  display: none;
+}
+
+.dokuwiki #dw__editform {
+  display: none;
+}
+
+.dokuwiki .toolbar {
+  display: none;
+}
+
+noscript {
+  background: @errormsg;
+  border: 0.0625rem solid @errormsg;
+  text-align: center;
+  font-size: 2.375rem;
+}
+
+.dokuwiki #adsearchbox {
+  padding-bottom: 1rem;
+}
+
+.dokuwiki input[name=admin_submit] {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      border: none;
+      text-decoration: underline;
+      color: __paperclip__gold__;
+      margin-right: @clipunit;
+      background-color: transparent;
+}
+
+.dokuwiki .paperclip__edit__header {
+  margin-top: @top_bottom_distance;
+  color: @clipblack;
+  font-size: @titlefont;
+  .paperclip__editlog__index {
+    font-size: 0.883rem;
+    margin-top: 1.4rem;
+    margin-bottom: 1.25rem;
+  }
+}
+blockquote {
+  color: @clipgray;
+}
+.paperclip__edittitle {
+  margin-top: 3.333rem;
+  margin-bottom: 2rem;
+  font-size: @titlefont;
+  font-family: -apple-system,BlinkMacSystemFont,Helvetica Neue,PingFang SC,Microsoft YaHei,Source Han Sans SC,Noto Sans CJK SC,WenQuanYi Micro Hei,sans-serif;
+  font-weight: bold;
+}
+
+.mode_edit {
+  .toolbutton {
+    background-color: @clipwhite;
+    border: none;
+    margin-left: 4.6rem;
+    img {
+      height: 0.883rem;
+    }
+  }
+  .toolbar {
+    border-top: 0.167rem solid @borderline;
+    border-bottom: @blineheight solid @borderline;
+  }
+  .tool__bar {
+    margin-left: -2.5rem;
+    margin-bottom: 1.625rem;
+    margin-top: 1.583rem;
+  }
+  #wiki__text {
+    font-size: 1rem;
+    border: none;
+    resize: none;
+    outline: none;
+    overflow: hidden;
+    line-height: 1.667rem;
+  }
+  .editBar {
+    padding-top: @barspacing;
+    border-top: @blineheight solid @borderline;
+    margin-top: 0.948rem;
+  }
+  #dw__editform {
+    margin-top: 1.958rem;
+  }
+  .editButtons {
+    margin-left: 3.335rem;
+    margin-top: @barspacing;
+  }
+  .summary {
+    margin-top: @barspacing;
+    margin-left: 1.569rem;
+  }
+  #size__ctl {
+    display: none;
+  }
+  button[type=submit] {
+    margin-right: 3.175rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    text-decoration: underline;
+    color: __paperclip__gold__;
+    background-color: transparent;
+  }
+  input[id=minoredit] {
+    margin-left: 4.26rem;
+    width: 0.6875rem;
+    height: 0.6875rem;
+    background-color: @clipwhite;
+    -webkit-appearance:none;
+    border: 0.0625rem solid @borderline;
+    border-radius: 0.125rem;
+    outline: none;
+  }
+  input[id=minoredit]:checked {
+    background: url("/lib/plugins/clipauth/images/right.jpg")no-repeat center;
+  }
+  input[id=edit__summary] {
+    width: 16rem;
+    border: none;
+    outline: none;
+    border-bottom: 0.0283rem solid @clipblack;
+  }
+  .license {
+    margin-top: 4rem;
+    margin-bottom: @top_bottom_distance;
+    color: @clipgray;
+    a {
+      color: __paperclip__gold__;
+    }
+  }
+}
+.mode_preview {
+  .toolbutton {
+    background-color: white;
+    border: none;
+  }
+  .toolbar {
+    border-top: 0.167rem solid @borderline;
+    border-bottom: @blineheight solid @borderline;
+  }
+  .tool__bar {
+    margin-left: -2.5rem;
+    margin-bottom: 1.625rem;
+    margin-top: 1.583rem;
+  }
+  .toolbutton {
+    margin-left: 4.6rem;
+    img {
+      height: 0.883rem;
+    }
+  }
+  #wiki__text {
+    font-size: 1rem;
+    border: none;
+    resize: none;
+    outline: none;
+    overflow: hidden;
+    line-height: 1.667rem;
+  }
+  .editBar {
+    padding-top: @barspacing;
+    border-top: @blineheight solid @borderline;
+    margin-top: 0.948rem;
+  }
+  #dw__editform {
+    margin-top: 1.958rem;
+  }
+  .editButtons {
+    margin-left: 3.335rem;
+    margin-top: @barspacing;
+  }
+  .summary {
+    margin-top: @barspacing;
+    margin-left: 1.569rem;
+  }
+  #size__ctl {
+    display: none;
+  }
+  button[type=submit] {
+    margin-right: 3.175rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    text-decoration: underline;
+    color: __paperclip__gold__;
+    background-color: transparent;
+  }
+  input[id=minoredit] {
+    margin-left: 4.26rem;
+    width: 0.6875rem;
+    height: 0.6875rem;
+    background-color: @clipwhite;
+    -webkit-appearance:none;
+    border: 0.0625rem solid @borderline;
+    border-radius: 0.125rem;
+    outline: none;
+  }
+  input[id=minoredit]:checked {
+    background: url("/lib/plugins/clipauth/images/right.jpg")no-repeat center;
+  }
+  input[id=edit__summary] {
+    width: 16rem;
+    border: none;
+    outline: none;
+    border-bottom: 0.0283rem solid @clipblack;
+  }
+  .license {
+    margin-top: 4rem;
+    margin-bottom: 2rem;
+    color: @clipgray;
+    a {
+      color: __paperclip__gold__;
+    }
+  }
+}
+
+.paperclip__login {
+  .paperclip__bind {
+    text-align: center;
+    font-size: 3rem;
+    color: @borderline;
+    margin-bottom: 2rem;
+  }
+  button {
+    margin-right: 0.5rem;
+  }
+}
+

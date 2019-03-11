@@ -1,0 +1,233 @@
+@button_gold:#DAA520;
+@deleted_gray:#E0E0E0;
+div.dokuwiki div.comment_wrapper {
+  margin: 5em 0 0;
+  padding: 3em;
+  clear: both;
+  border-style: solid;
+  border-color: #dddddd;
+  border-width: 2px;
+  border-radius: 5px;
+}
+
+div.dokuwiki div.comment_text {
+  padding-top: 0.5em
+}
+
+div.dokuwiki div#discussion__comment_preview {
+  padding: 1em 0;
+  margin-top: 1em;
+  visibility: hidden;
+  display: none;
+}
+
+div.dokuwiki div.comment_preview {
+  padding: 1em;
+  border: 1px dashed __border__;
+}
+
+div.dokuwiki div.comment_form {
+  margin-top: 1.5em;
+  padding-top: 0.5em;
+  clear: both;
+}
+
+div.dokuwiki div.comment_form .error {
+  background: #fcc;
+}
+
+div.dokuwiki #discussion__comment_form label input.edit {
+  width: 75%;
+}
+div.dokuwiki #discussion__comment_form {
+    .comment_name,
+    .comment_mail,
+    .comment_url,
+    .comment_address,
+    .comment_date {
+        margin: 2px 0;
+    }
+}
+
+div.dokuwiki .comment_head {
+  font-size: 80%;
+  color: __text_neu__;
+  padding-top: 0.5em;
+  margin-top: 1em;
+  clear: both;
+}
+
+div.dokuwiki .comment_head abbr {
+  border-bottom: 0;
+}
+
+div.dokuwiki .comment_head span.author {
+  text-decoration:none;
+}
+
+div.dokuwiki .comment_head abbr.published {
+  text-decoration:none;
+}
+
+div.dokuwiki .comment_head abbr.updated {
+  text-decoration:none;
+}
+
+
+div.dokuwiki .comment_body {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-style: none;
+  font-size: 95%;
+}
+
+/*clip hacked*/
+div.dokuwiki .comment_body p {
+  margin: 0;
+}
+
+div.dokuwiki .deleted_comment {
+  color: @deleted_gray;
+  font-style: oblique;
+}
+
+div.dokuwiki .placeholder {
+  height: 0.625rem;
+}
+
+div.dokuwiki .parent_comment_head {
+  margin: 0;
+  font-size: 80%;
+  color: __text_neu__;
+  padding-top: 0.2em;
+  padding-left: 1.25rem;
+  clear: both;
+}
+
+div.dokuwiki .parent_comment_body{
+  padding-top: 0.5em;
+  padding-bottom: 0.2em;
+  padding-left: 1.25rem;
+  border-style: none;
+  margin-bottom: 0.3125rem;
+  font-size: 95%;
+}
+
+div.dokuwiki .parent_hentry{
+  border-left: 2px solid #e0e0e0;
+  margin-left: 1.875rem;
+}
+
+div.dokuwiki .parent_comment_head abbr {
+  border-bottom: 0;
+}
+
+div.dokuwiki .parent_comment_head abbr.published {
+  text-decoration:none;
+}
+
+/*hacked end*/
+
+div.dokuwiki div.comment_replies {
+}
+
+div.dokuwiki div.comment_subscribe {
+  float: left;
+  display: inline;
+  padding: 0 0.8em;
+}
+
+div.dokuwiki div.comment_subscribe input {
+  float: left;
+  display: inline;
+  margin-top: 0.3em;
+}
+
+div.dokuwiki div.comment_subscribe label {
+  float: left;
+  padding-left: 0.4em;
+    font-weight: normal;
+}
+
+div.dokuwiki input.comment_submit {
+  float: right;
+  display: inline;
+  background-color: __paperclip__gold__;
+  height: 1.5em;
+  border-radius: 0.95em;
+  padding: .2em 1em;
+  border-style: none;
+}
+
+div.dokuwiki div.comment_hidden {
+  opacity: 0.5;
+}
+
+div.dokuwiki div.comment_buttons {
+  float: left;
+  margin-left: -0.375rem;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 0;
+  margin-bottom: 1.875rem;
+  padding-bottom: 1em;
+  border: none;
+}
+
+div.dokuwiki div.comment_buttons input.button {
+  color: @button_gold;
+  background-color: white;
+  vertical-align: middle;
+  text-decoration: none;
+  padding: .1em .5em;
+  border-style: none;
+  text-decoration: underline;
+  outline: none;
+}
+
+div.dokuwiki div.toggle_button {
+  text-align: right;
+
+}
+
+div.dokuwiki div.toggle_button input.button {
+  border: 1px solid __border__;
+  color: __text__;
+  background-color: __background__;
+  vertical-align: middle;
+  text-decoration: none;
+  padding: .1em .5em;
+  font-size: 10px;
+}
+
+div.dokuwiki div.newthread_form {
+  clear: both;
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+div.dokuwiki #discussion__newthread_form input.edit {
+  width: 95%;
+}
+
+div.dokuwiki ul.admin_discussion li.hidden {
+  display: list-item;
+  opacity: 0.5;
+}
+
+div.dokuwiki ul.admin_discussion span.abstract {
+  color: __text_neu__;
+}
+
+div.dokuwiki table.pagelist tr.discussion_status2 a {
+  color: __text_neu__ !important;
+}
+
+textarea {
+  border-color: __paperclip__textarea__;
+  border-radius: 2px;
+}
+
+.photo {
+  border-radius: 20px;
+}

@@ -92,7 +92,6 @@ class Doku_Form {
         if ($this->_infieldset) {
             $this->addElement(array('_elem'=>'closefieldset'));
         }
-        $this->addElement(array('_elem'=>'openfieldset', '_legend'=>$legend));
         $this->_infieldset = true;
     }
 

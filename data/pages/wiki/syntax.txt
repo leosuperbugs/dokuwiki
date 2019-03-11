@@ -2,7 +2,7 @@
 
 [[doku>DokuWiki]] supports some simple markup language, which tries to make the datafiles to be as readable as possible. This page contains all possible syntax you may use when editing the pages. Simply have a look at the source of this page by pressing "Edit this page". If you want to try something, just use the [[playground:playground|playground]] page. The simpler markup is easily accessible via [[doku>toolbar|quickbuttons]], too.
 
-===== Basic Text Formatting =====
+====== Basic Text Formatting ======
 
 DokuWiki supports **bold**, //italic//, __underlined__ and ''monospaced'' texts. Of course you can **__//''combine''//__** all these.
 
@@ -29,7 +29,7 @@ or followed by\\ a whitespace \\this happens without it.
 
 You should use forced newlines only if really needed.
 
-===== Links =====
+====== Links ======
 
 DokuWiki supports multiple ways of creating links.
 
@@ -104,13 +104,13 @@ Please note: The image formatting is the only formatting syntax accepted in link
 
 The whole [[#images_and_other_files|image]] and [[#links|link]] syntax is supported (including image resizing, internal and external images and URLs and interwiki links).
 
-===== Footnotes =====
+====== Footnotes ======
 
 You can add footnotes ((This is a footnote)) by using double parentheses.
 
   You can add footnotes ((This is a footnote)) by using double parentheses.
 
-===== Sectioning =====
+====== Sectioning ======
 
 You can use up to five different levels of headlines to structure your content. If you have more than three headlines, a table of contents is generated automatically -- this can be disabled by including the string ''<nowiki>~~NOTOC~~</nowiki>'' in the document.
 
@@ -126,7 +126,7 @@ By using four or more dashes, you can make a horizontal line:
 
 ----
 
-===== Media Files =====
+====== Media Files ======
 
 You can include external and internal [[doku>images|images, videos and audio files]] with curly brackets. Optionally you can specify the size of them.
 
@@ -136,12 +136,12 @@ Resize to given width:            {{wiki:dokuwiki-128.png?50}}
 
 Resize to given width and height((when the aspect ratio of the given width and height doesn't match that of the image, it will be cropped to the new ratio before resizing)): {{wiki:dokuwiki-128.png?200x50}}
 
-Resized external image:           {{https://secure.php.net/images/php.gif?200x50}}
+Resized external image:           {{http://php.net/images/php.gif?200x50}}
 
   Real size:                        {{wiki:dokuwiki-128.png}}
   Resize to given width:            {{wiki:dokuwiki-128.png?50}}
   Resize to given width and height: {{wiki:dokuwiki-128.png?200x50}}
-  Resized external image:           {{https://secure.php.net/images/php.gif?200x50}}
+  Resized external image:           {{http://php.net/images/php.gif?200x50}}
 
 
 By using left or right whitespaces you can choose the alignment.
@@ -193,7 +193,7 @@ When you upload a ''video.webm'' and ''video.ogv'' next to the referenced ''vide
 
 Additionally DokuWiki supports a "poster" image which will be shown before the video has started. That image needs to have the same filename as the video and be either a jpg or png file. In the example above a ''video.jpg'' file would work.
 
-===== Lists =====
+====== Lists ======
 
 Dokuwiki supports ordered and unordered lists. To create a list item, indent your text by two spaces and use a ''*'' for unordered lists or a ''-'' for ordered ones.
 

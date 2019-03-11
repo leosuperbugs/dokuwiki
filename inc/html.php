@@ -32,6 +32,26 @@ function html_wikilink($id,$name=null,$search=''){
     return $xhtml_renderer->internallink($id,$name,$search,true,'navigation');
 }
 
+function _paperclip_doddlemid() {
+    //    print '<div class="centeralign">'.NL;
+    print '<div class="paperclip__doddlemid">
+                <div class="paperclip__logo">
+                <img src="/../lib/tpl/starter/images/home/logo-pet.png" >';
+//    include dirname(__FILE__).'/../lib/tpl/starter/images/home/logo-pet.svg';
+    print       '</div>
+                <p>建立你的当代生活说明书。</p>
+           </div>';
+    //
+
+}
+
+function addElementsWithWrap(Doku_Form &$form, array $elements) {
+    $form->addElement('<div class="line__wrapper">');
+    foreach ($elements as $element) {
+        $form->addElement($element);
+    }
+    $form->addElement('</div>');
+}
 /**
  * The loginform
  *
@@ -45,31 +65,46 @@ function html_login($svg = false){
     global $ID;
     global $INPUT;
 
-    print p_locale_xhtml('login');
-    print '<div class="centeralign">'.NL;
+//    print p_locale_xhtml('login');
+    print '<div class=paperclip__login>'.NL;
+//    print '<div class="centeralign">'.NL;
+    _paperclip_doddlemid();
+
     $form = new Doku_Form(array('id' => 'dw__login'));
-    $form->startFieldset($lang['btn_login']);
+    $form->startFieldset('');
+    $form->addElement('<div class="form__wrapper">');
     $form->addHidden('id', $ID);
     $form->addHidden('do', 'login');
-    $form->addElement(form_makeTextField('u', ((!$INPUT->bool('http_credentials')) ? $INPUT->str('u') : ''), $lang['user'], 'focus__this', 'block'));
-    $form->addElement(form_makePasswordField('p', $lang['pass'], '', 'block'));
-    if($conf['rememberme']) {
-        $form->addElement(form_makeCheckboxField('r', '1', $lang['remember'], 'remember__me', 'simple'));
-    }
-    $form->addElement(form_makeButton('submit', '', $lang['btn_login']));
-    $form->endFieldset();
-
+    // Username or mail address
+    $firstline = array(
+        form_makeTextField('u', ((!$INPUT->bool('http_credentials')) ? $INPUT->str('u') : ''), '邮箱', 'focus__this', 'block')
+    );
     if(actionOK('register')){
         $registerLink = (new \dokuwiki\Menu\Item\Register())->asHtmlLink('', $svg);
-        $form->addElement('<p>'.$lang['reghere'].': '. $registerLink .'</p>');
+        array_push($firstline, '<p>'.$lang['reghere'].': '. $registerLink .'</p>');
     }
+    addElementsWithWrap($form, $firstline);
 
+
+    // Password
+    $secondline = array(
+        form_makePasswordField('p', $lang['pass'], '', 'block')
+    );
     if (actionOK('resendpwd')) {
         $resendPwLink = (new \dokuwiki\Menu\Item\Resendpwd())->asHtmlLink('', $svg);
-        $form->addElement('<p>'.$lang['pwdforget'].': '. $resendPwLink .'</p>');
+        array_push($secondline, '<p>'.$lang['pwdforget'].': '. $resendPwLink .'</p>');
     }
+    addElementsWithWrap($form, $secondline);
+
+    $form->addElement('</div>');
+
+    $form->addElement('<div class="button__wrapper">');
+    $form->addElement(form_makeButton('submit', '', $lang['btn_login']));
+    $form->addElement('</div>');
+    $form->endFieldset();
 
     html_form('login', $form);
+//    print '</div>'.NL;
     print '</div>'.NL;
 }
 
@@ -80,9 +115,9 @@ function html_login($svg = false){
  * @return string html
  */
 function html_denied() {
-    print p_locale_xhtml('denied');
+//    print p_locale_xhtml('denied');
 
-    if(empty($_SERVER['REMOTE_USER']) && actionOK('login')){
+    if(empty($_SERVER['REMOTE_USER'])){
         html_login();
     }
 }
@@ -307,17 +342,17 @@ function html_draft(){
     global $INFO;
     global $ID;
     global $lang;
-    $draft = new \dokuwiki\Draft($ID, $INFO['client']);
-    $text  = $draft->getDraftText();
+    $draft = unserialize(io_readFile($INFO['draft'],false));
+    $text  = cleanText(con($draft['prefix'],$draft['text'],$draft['suffix'],true));
 
     print p_locale_xhtml('draft');
     html_diff($text, false);
     $form = new Doku_Form(array('id' => 'dw__editform'));
     $form->addHidden('id', $ID);
-    $form->addHidden('date', $draft->getDraftDate());
+    $form->addHidden('date', $draft['date']);
     $form->addHidden('wikitext', $text);
     $form->addElement(form_makeOpenTag('div', array('id'=>'draft__status')));
-    $form->addElement($draft->getDraftMessage());
+    $form->addElement($lang['draftdate'].' '. dformat(filemtime($INFO['draft'])));
     $form->addElement(form_makeCloseTag('div'));
     $form->addElement(form_makeButton('submit', 'recover', $lang['btn_recover'], array('tabindex'=>'1')));
     $form->addElement(form_makeButton('submit', 'draftdel', $lang['btn_draftdel'], array('tabindex'=>'2')));
@@ -1560,7 +1595,7 @@ function html_softbreak_callback($match){
 
     // its a long string without a breaking character,
     // make certain characters into breaking characters by inserting a
-    // word break opportunity (<wbr> tag) in front of them.
+    // breaking character (zero length space, U+200B / #8203) in front them.
     $regex = <<< REGEX
 (?(?=                                 # start a conditional expression with a positive look ahead ...
 &\#?\\w{1,6};)                        # ... for html entities - we don't want to split them (ok to catch some invalid combinations)
@@ -1570,7 +1605,7 @@ function html_softbreak_callback($match){
 )+                                    # end conditional expression
 REGEX;
 
-    return preg_replace('<'.$regex.'>xu','\0<wbr>',$match[0]);
+    return preg_replace('<'.$regex.'>xu','\0&#8203;',$match[0]);
 }
 
 /**
@@ -1623,7 +1658,6 @@ function html_msgarea(){
 
     unset($GLOBALS['MSG']);
 }
-
 /**
  * Prints the registration form
  *
@@ -1637,23 +1671,41 @@ function html_register(){
     $base_attrs = array('size'=>50,'required'=>'required');
     $email_attrs = $base_attrs + array('type'=>'email','class'=>'edit');
 
-    print p_locale_xhtml('register');
-    print '<div class="centeralign">'.NL;
+    print '<div class="paperclip__register">';
+//    print '<div class="centeralign">'.NL;
+    _paperclip_doddlemid();
     $form = new Doku_Form(array('id' => 'dw__register'));
     $form->startFieldset($lang['btn_register']);
+
+    $form->addElement('<div class="form__wrapper">');
     $form->addHidden('do', 'register');
     $form->addHidden('save', '1');
-    $form->addElement(form_makeTextField('login', $INPUT->post->str('login'), $lang['user'], '', 'block', $base_attrs));
-    if (!$conf['autopasswd']) {
-        $form->addElement(form_makePasswordField('pass', $lang['pass'], '', 'block', $base_attrs));
-        $form->addElement(form_makePasswordField('passchk', $lang['passchk'], '', 'block', $base_attrs));
+    // paperclip hacked
+    if ($conf['needInvitation'] == 0) {
+        addElementsWithWrap($form, array(
+            0 => form_makeTextField('invitationCode', $INPUT->post->str('invitationCode'), '邀请码', '', 'block', $base_attrs),
+            '<p><a href="https://www.weibo.com/p/1005056414205745">申请邀请码</a></p>'
+            )
+        );
     }
-    $form->addElement(form_makeTextField('fullname', $INPUT->post->str('fullname'), $lang['fullname'], '', 'block', $base_attrs));
-    $form->addElement(form_makeField('email','email', $INPUT->post->str('email'), $lang['email'], '', 'block', $email_attrs));
-    $form->addElement(form_makeButton('submit', '', $lang['btn_register']));
+    addElementsWithWrap($form, array( 0 => form_makeTextField('login', $INPUT->post->str('login'), $lang['user'], '', 'block', $base_attrs)));
+    addElementsWithWrap($form, array( 0 => form_makeField('email','email', $INPUT->post->str('email'), $lang['email'], '', 'block', $email_attrs)));
+    if (!$conf['autopasswd']) {
+        addElementsWithWrap($form, array( 0 => form_makePasswordField('pass', $lang['pass'], '', 'block', $base_attrs)));
+        addElementsWithWrap($form, array( 0 => form_makePasswordField('passchk', $lang['passchk'], '', 'block', $base_attrs)));
+    }
+    addElementsWithWrap($form, array( 0 => form_makeTextField('fullname', $INPUT->post->str('fullname'), $lang['fullname'], '', 'block', $base_attrs),
+    1 => '<div class="table__button__wrapper">',
+    2 => form_makeButton('submit', '', $lang['btn_register']),
+    3 => '</div>'
+    ));
+
+
+    $form->addElement('</div>');
     $form->endFieldset();
     html_form('register', $form);
 
+    print '</div>'.NL;
     print '</div>'.NL;
 }
 
@@ -1671,8 +1723,8 @@ function html_updateprofile(){
     /** @var DokuWiki_Auth_Plugin $auth */
     global $auth;
 
-    print p_locale_xhtml('updateprofile');
-    print '<div class="centeralign">'.NL;
+    print '<div class="paperclip__update">'.NL;
+    _paperclip_doddlemid();
 
     $fullname = $INPUT->post->str('fullname', $INFO['userinfo']['name'], true);
     $email = $INPUT->post->str('email', $INFO['userinfo']['mail'], true);
@@ -1696,27 +1748,29 @@ function html_updateprofile(){
         $form->addElement(form_makeTag('br'));
         $form->addElement(form_makePasswordField('oldpass', $lang['oldpass'], '', 'block', array('size'=>'50', 'required' => 'required')));
     }
+    $form->addElement('<div class="button__wrapper">');
     $form->addElement(form_makeButton('submit', '', $lang['btn_save']));
     $form->addElement(form_makeButton('reset', '', $lang['btn_reset']));
+    $form->addElement('</div">');
 
     $form->endFieldset();
     html_form('updateprofile', $form);
 
-    if ($auth->canDo('delUser') && actionOK('profile_delete')) {
-        $form_profiledelete = new Doku_Form(array('id' => 'dw__profiledelete'));
-        $form_profiledelete->startFieldset($lang['profdeleteuser']);
-        $form_profiledelete->addHidden('do', 'profile_delete');
-        $form_profiledelete->addHidden('delete', '1');
-        $form_profiledelete->addElement(form_makeCheckboxField('confirm_delete', '1', $lang['profconfdelete'],'dw__confirmdelete','', array('required' => 'required')));
-        if ($conf['profileconfirm']) {
-            $form_profiledelete->addElement(form_makeTag('br'));
-            $form_profiledelete->addElement(form_makePasswordField('oldpass', $lang['oldpass'], '', 'block', array('size'=>'50', 'required' => 'required')));
-        }
-        $form_profiledelete->addElement(form_makeButton('submit', '', $lang['btn_deleteuser']));
-        $form_profiledelete->endFieldset();
-
-        html_form('profiledelete', $form_profiledelete);
-    }
+//    if ($auth->canDo('delUser') && actionOK('profile_delete')) {
+//        $form_profiledelete = new Doku_Form(array('id' => 'dw__profiledelete'));
+//        $form_profiledelete->startFieldset($lang['profdeleteuser']);
+//        $form_profiledelete->addHidden('do', 'profile_delete');
+//        $form_profiledelete->addHidden('delete', '1');
+//        $form_profiledelete->addElement(form_makeCheckboxField('confirm_delete', '1', $lang['profconfdelete'],'dw__confirmdelete','', array('required' => 'required')));
+//        if ($conf['profileconfirm']) {
+//            $form_profiledelete->addElement(form_makeTag('br'));
+//            $form_profiledelete->addElement(form_makePasswordField('oldpass', $lang['oldpass'], '', 'block', array('size'=>'50', 'required' => 'required')));
+//        }
+//        $form_profiledelete->addElement(form_makeButton('submit', '', $lang['btn_deleteuser']));
+//        $form_profiledelete->endFieldset();
+//
+//        html_form('profiledelete', $form_profiledelete);
+//    }
 
     print '</div>'.NL;
 }
@@ -1833,16 +1887,9 @@ function html_edit(){
     <div class="editBox" role="application">
 
     <div class="toolbar group">
+        <div id="draft__status" class="draft__status"><?php if(!empty($INFO['draft'])) echo $lang['draftdate'].' '.dformat();?></div>
         <div id="tool__bar" class="tool__bar"><?php if ($wr && $data['media_manager']){?><a href="<?php echo DOKU_BASE?>lib/exe/mediamanager.php?ns=<?php echo $INFO['namespace']?>"
             target="_blank"><?php echo $lang['mediaselect'] ?></a><?php }?></div>
-    </div>
-    <div id="draft__status" class="draft__status">
-        <?php
-        $draft = new \dokuwiki\Draft($ID, $INFO['client']);
-        if ($draft->isDraftAvailable()) {
-            echo $draft->getDraftMessage();
-        }
-        ?>
     </div>
     <?php
 
