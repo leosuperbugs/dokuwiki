@@ -13,10 +13,10 @@
 
 
 /* Basic Settings */
-$conf['title']       = 'DokuWiki';        //what to show in the title
+$conf['title']       = '回形针手册';        //what to show in the title
 $conf['start']       = 'start';           //name of start page
-$conf['lang']        = 'en';              //your language
-$conf['template']    = 'dokuwiki';         //see lib/tpl directory
+$conf['lang']        = 'zh';              //your language
+$conf['template']    = 'starter';         //see lib/tpl directory
 $conf['tagline']     = '';                //tagline in header (if template supports it)
 $conf['sidebar']     = 'sidebar';         //name of sidebar in root namespace (if template supports it)
 $conf['license']     = 'cc-by-nc-sa';     //see conf/license.php
@@ -26,7 +26,7 @@ $conf['baseurl']     = '';                //URL to server including protocol - b
 $conf['cookiedir']   = '';                //path to use in cookies - blank for basedir
 $conf['dmode']       = 0755;              //set directory creation mode
 $conf['fmode']       = 0644;              //set file creation mode
-$conf['allowdebug']  = 0;                 //allow debug output, enable if needed 0|1
+$conf['allowdebug']  = 1;                 //allow debug output, enable if needed 0|1
 
 /* Display Settings */
 $conf['recent']      = 20;                //how many entries to show in recent
@@ -52,12 +52,12 @@ $conf['sneaky_index']= 0;                 //check for namespace read permission 
 $conf['hidepages']   = '';                //Regexp for pages to be skipped from RSS, Search and Recent Changes
 
 /* Authentication Settings */
-$conf['useacl']      = 0;                //Use Access Control Lists to restrict access?
-$conf['autopasswd']  = 1;                //autogenerate passwords and email them to user
-$conf['authtype']    = 'authplain';      //which authentication backend should be used
+$conf['useacl']      = 1;                //Use Access Control Lists to restrict access?
+$conf['autopasswd']  = 0;                //autogenerate passwords and email them to user
+$conf['authtype']    = 'clipauth_paperclipAuth';       //which authentication backend should be used
 $conf['passcrypt']   = 'smd5';           //Used crypt method (smd5,md5,sha1,ssha,crypt,mysql,my411)
-$conf['defaultgroup']= 'user';           //Default groups new Users are added to
-$conf['superuser']   = '!!not set!!';    //The admin can be user or @group or comma separated list user1,@group1,user2
+$conf['defaultgroup']= 'unverified';     //Default groups new Users are added to
+$conf['superuser']   = '@admin';    //The admin can be user or @group or comma separated list user1,@group1,user2
 $conf['manager']     = '!!not set!!';    //The manager can be user or @group or comma separated list user1,@group1,user2
 $conf['profileconfirm'] = 1;             //Require current password to confirm changes to user profile
 $conf['rememberme'] = 1;                 //Enable/disable remember me on login
@@ -105,9 +105,9 @@ $conf['fetchsize']   = 0;                //maximum size (bytes) fetch.php may do
 $conf['subscribers'] = 0;                //enable change notice subscription support
 $conf['subscribe_time'] = 24*60*60;      //Time after which digests / lists are sent (in sec, default 1 day)
                                          //Should be smaller than the time specified in recent_days
-$conf['notify']      = '';               //send change info to this email (leave blank for nobody)
+$conf['notify']      = 'service@ipaperclip.org';               //send change info to this email (leave blank for nobody)
 $conf['registernotify'] = '';            //send info about newly registered users to this email (leave blank for nobody)
-$conf['mailfrom']    = '';               //use this email when sending mails
+$conf['mailfrom']    = 'service@ipaperclip.org';               //use this email when sending mails
 $conf['mailreturnpath']    = '';         //use this email as returnpath for bounce mails
 $conf['mailprefix']  = '';               //use this as prefix of outgoing mails
 $conf['htmlmail']    = 1;                //send HTML multipart mails

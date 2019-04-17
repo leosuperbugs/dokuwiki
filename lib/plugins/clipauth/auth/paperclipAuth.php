@@ -476,7 +476,7 @@ class auth_plugin_clipauth_paperclipAuth extends DokuWiki_Auth_Plugin
         }
 
         // check if the email has been registerd
-        if ($this->getUserDataByEmail($mail) !== false) {
+        if ($this->dao->getUserDataByEmailCore($mail) !== false) {
             return false;
         }
 
@@ -488,15 +488,15 @@ class auth_plugin_clipauth_paperclipAuth extends DokuWiki_Auth_Plugin
         $invitation = $pass['invitation'];
         // if the user does not exist
         // check the invitation code
-        if ($conf['needInvitation'] == 0) {
-            $result = $this->dao->checkInvtCode($invitation);
-            // the code should be valid and haven't been used
-            if ($result === false || $result['isUsed'] == 1) {
-                // return false as user has already been registered
-                 return false;
-            }
-            $pass = $pass['pass'];
-        }
+//        if ($conf['needInvitation'] == 0) {
+//            $result = $this->dao->checkInvtCode($invitation);
+//            // the code should be valid and haven't been used
+//            if ($result === false || $result['isUsed'] == 1) {
+//                // return false as user has already been registered
+//                 return false;
+//            }
+//            $pass = $pass['pass'];
+//        }
 
         // encrypt password
         $pass = auth_cryptPassword($pass);

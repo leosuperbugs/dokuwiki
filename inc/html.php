@@ -1681,13 +1681,13 @@ function html_register(){
     $form->addHidden('do', 'register');
     $form->addHidden('save', '1');
     // paperclip hacked
-    if ($conf['needInvitation'] == 0) {
-        addElementsWithWrap($form, array(
-            0 => form_makeTextField('invitationCode', $INPUT->post->str('invitationCode'), '邀请码', '', 'block', $base_attrs),
-            '<p><a href="https://www.weibo.com/p/1005056414205745">申请邀请码</a></p>'
-            )
-        );
-    }
+//    if ($conf['needInvitation'] == 0) {
+//        addElementsWithWrap($form, array(
+//            0 => form_makeTextField('invitationCode', $INPUT->post->str('invitationCode'), '邀请码', '', 'block', $base_attrs),
+//            '<p><a href="https://www.weibo.com/p/1005056414205745">申请邀请码</a></p>'
+//            )
+//        );
+//    }
     addElementsWithWrap($form, array( 0 => form_makeTextField('login', $INPUT->post->str('login'), $lang['user'], '', 'block', $base_attrs)));
     addElementsWithWrap($form, array( 0 => form_makeField('email','email', $INPUT->post->str('email'), $lang['email'], '', 'block', $email_attrs)));
     if (!$conf['autopasswd']) {

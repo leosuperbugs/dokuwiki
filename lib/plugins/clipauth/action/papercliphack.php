@@ -23,12 +23,12 @@ if (!defined('DOKU_INC')) {
 
 // The position of the metadata in the register form
 define('__REGISTER_ORDER__', array(
-    'invitationCode'=> 2,
-    'username' => 6,
-    'email' => 9,
-    'pass' => 12,
-    'passchk' => 15,
-    'fullname' => 18
+//    'invitationCode'=> 2,
+    'username' => 2,
+    'email' => 5,
+    'pass' => 8,
+    'passchk' => 11,
+    'fullname' => 14
 ));
 define('__MUTED__', 'muted');
 define('__NUKED__', 'nuked');
@@ -379,8 +379,8 @@ class action_plugin_clipauth_papercliphack extends DokuWiki_Action_Plugin
     private function insertRegisterElements(&$registerFormContent)
     {
         // Invitation Code
-        $registerFormContent[__REGISTER_ORDER__['invitationCode']]['maxlength'] = $this->getConf('invitationCodeLen');
-        $registerFormContent[__REGISTER_ORDER__['invitationCode']]['minlength'] = $this->getConf('invitationCodeLen');
+//        $registerFormContent[__REGISTER_ORDER__['invitationCode']]['maxlength'] = $this->getConf('invitationCodeLen');
+//        $registerFormContent[__REGISTER_ORDER__['invitationCode']]['minlength'] = $this->getConf('invitationCodeLen');
         // Username
         $registerFormContent[__REGISTER_ORDER__['username']]['maxlength'] = $this->getConf('usernameMaxLen');
         // E-mail
@@ -854,9 +854,9 @@ class action_plugin_clipauth_papercliphack extends DokuWiki_Action_Plugin
 
     private function adminEditUnit($editData) {
         $langs = $this->adminUnitlangs();
-        print $this->adminEditUnit();
+        print adminEditUnit();
         $this->printAdminProcess($editData['editlogid'], $editData['time'], $editData['editorid'], $editData['identity']);
-        adminUserInfo($editData['realname'], $editData['editorid'], $editData['mailaddr'], $editData['identity'], $langs);
+        print adminUserInfo($editData['realname'], $editData['editorid'], $editData['mailaddr'], $editData['identity'], $langs);
         $this->editUnit($editData, true);
         print commonDivEnd();
 
@@ -866,7 +866,7 @@ class action_plugin_clipauth_papercliphack extends DokuWiki_Action_Plugin
         $langs = $this->adminUnitlangs();
         print $this->adminEditUnit();
         $this->printAdminProcess($commentData['hash'], $commentData['time'], $commentData['userid'], $commentData['identity']);
-        adminUserInfo($commentData['realname'], $commentData['userid'], $commentData['mailaddr'], $commentData['identity'], $langs);
+        print adminUserInfo($commentData['realname'], $commentData['userid'], $commentData['mailaddr'], $commentData['identity'], $langs);
         $this->editUnit($commentData, true);
         print commonDivEnd();
     }

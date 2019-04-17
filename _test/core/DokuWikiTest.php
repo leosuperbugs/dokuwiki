@@ -3,7 +3,7 @@ if(!class_exists('PHPUnit_Framework_TestCase')) {
     /**
      * phpunit 5/6 compatibility
      */
-    class PHPUnit_Framework_TestCase extends PHPUnit\Framework\TestCase {
+    class PHPUnit_Framework_TestCase extends \PHPUnit\Framework\TestCase {
         /**
          * setExpectedException is deprecated in PHPUnit 6
          *
@@ -24,7 +24,7 @@ if(!class_exists('PHPUnit_Framework_TestCase')) {
  *
  * @uses PHPUnit_Framework_TestCase and thus PHPUnit 5.7+ is required
  */
-abstract class DokuWikiTest extends PHPUnit_Framework_TestCase {
+abstract class DokuWikiTest extends \PHPUnit\Framework\TestCase {
 
     /**
      * tests can override this
